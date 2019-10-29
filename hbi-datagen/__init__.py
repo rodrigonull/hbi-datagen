@@ -4,6 +4,8 @@ import uuid
 
 from faker import Faker
 
+name="hbi-datagen"
+
 fake = Faker()
 
 UUID_KEYS = [
