@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="hbi-datagen",
-    version="0.0.1",
+    name="hbi_datagen",
+    version="0.0.3",
     author="Brandon Tweed",
     author_email="zbrandontweed@gmail.com",
     description="Package to generate example payloads for consumption by the HBI service.",

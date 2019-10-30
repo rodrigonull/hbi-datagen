@@ -4,7 +4,7 @@ import uuid
 
 from faker import Faker
 
-name="hbi-datagen"
+name="hbi_datagen"
 
 fake = Faker()
 
