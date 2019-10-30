@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="hbi-datagen-catastrophe-brandon",
+    name="hbi-datagen",
     version="0.0.1",
     author="Brandon Tweed",
     author_email="zbrandontweed@gmail.com",
