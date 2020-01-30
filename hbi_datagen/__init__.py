@@ -3,14 +3,14 @@ import datetime
 import uuid
 
 from faker import Faker
+from random import randint
 
-name="hbi_datagen"
+name = "hbi_datagen"
 
 fake = Faker()
 
 UUID_KEYS = [
     "rhel_machine_id",
-    "satellite_id",
     "subscription_manager_id",
     "insights_id",
     "bios_uuid",
@@ -98,6 +98,9 @@ def create_host_data(
     for uuid_key in UUID_KEYS:
         data[uuid_key] = identifiers
 
+    if fake.pybool():
+        data['satellite_id'] = identifiers
+
     data["display_name"] = generate_display_name(panic_prevention)
     data["ansible_host"] = fake.hostname()
     data["fqdn"] = generate_fqdn(panic_prevention)
@@ -107,6 +110,9 @@ def create_host_data(
 
     data["facts"] = [generate_facts()]
     # TODO: Generate Tags
+
+    data['stale_timestamp'] = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=randint(1, 7))
+    data['reporter'] = fake.pystr()
 
     data = {**data, **extra_data} if extra_data and isinstance(extra_data, dict) else data
 
@@ -152,7 +158,6 @@ _EXAMPLE_PAYLOAD = {
     "insights_id": "40ec059615724ebab7521463757b66a2",
     "rhel_machine_id": "40ec059615724ebab7521463757b66a2",
     "subscription_manager_id": "40ec059615724ebab7521463757b66a2",
-    "satellite_id": "40ec059615724ebab7521463757b66a2",
     "bios_uuid": "40ec059615724ebab7521463757b66a2",
     "ip_addresses": ["10.10.0.1", "10.0.0.2"],
     "fqdn": "some.host.example.com",
